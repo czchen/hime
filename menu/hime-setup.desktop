@@ -13,3 +13,4 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=Settings;
+Keywords=hime;input method;
