@@ -12,18 +12,18 @@ option(ENABLE_QT5 "Enable Qt5 input method module" On)
 
 include_directories("${PROJECT_SOURCE_DIR}/src/im-client")
 
-set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 if (ENABLE_QT4)
     find_package(Qt4 REQUIRED)
 
-    set(QT4_IMMODULE_SRCS
-        src/qt4-im/hime-common-qt.h
-        src/qt4-im/hime-imcontext-qt.cpp
-        src/qt4-im/hime-imcontext-qt.h
-        src/qt4-im/hime-qt.cpp
+    qt4_wrap_cpp(hime-qt4 QT4_IMMODULE_MOC_SRCS
         src/qt4-im/hime-qt.h
+    )
+
+    set(QT4_IMMODULE_SRCS
+        src/qt4-im/hime-imcontext-qt.cpp
+        src/qt4-im/hime-qt.cpp
         src/qt4-im/im-hime-qt.cpp
     )
 
@@ -36,11 +36,14 @@ endif()
 if (ENABLE_QT5)
     find_package(Qt5 CONFIG REQUIRED Core Gui)
 
+    qt5_wrap_cpp(hime-qt5 QT5_IMMODULE_MOC_SRCS
+        src/qt5-im/hime-imcontext-qt.h
+        src/qt5-im/hime-qt.h
+    )
+
     set(QT5_IMMODULE_SRCS
         src/qt5-im/hime-imcontext-qt.cpp
-        src/qt5-im/hime-imcontext-qt.h
         src/qt5-im/hime-qt.cpp
-        src/qt5-im/hime-qt.h
     )
 
     add_library(hime-qt5 MODULE ${QT5_IMMODULE_SRCS})
