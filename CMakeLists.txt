@@ -9,6 +9,8 @@ include(GNUInstallDirs)
 
 option(ENABLE_QT5 "Enable Qt5 input method module" On)
 
+include_directories("${PROJECT_SOURCE_DIR}/src/im-client")
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
