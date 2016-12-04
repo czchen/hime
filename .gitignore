@@ -56,3 +56,7 @@ pin-juyin
 tmp/
 .idea/
 .gitignore
+
+/CMakeCache.txt
+/CMakeFiles
+/cmake_install.cmake
