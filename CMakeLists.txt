@@ -7,12 +7,23 @@ set(CMAKE_CXX_FLAGS "-O2 -Wall -Wextra ${CMAKE_CXX_FLAGS}")
 
 include(GNUInstallDirs)
 
+option(ENABLE_CHEWING "Enable chewing input method" On)
 option(ENABLE_QT4 "Enable Qt5 input method module" On)
 option(ENABLE_QT5 "Enable Qt5 input method module" On)
 
 include_directories("${PROJECT_SOURCE_DIR}/src/im-client")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+if (ENABLE_CHEWING)
+    find_library(CHEWING chewing)
+
+    if (NOT CHEWING)
+        message(SEND_ERROR "cannot find chewing")
+    endif()
+
+    # FIXME: compile src/modules/chewing*
+endif()
 
 if (ENABLE_QT4)
     find_package(Qt4 REQUIRED)
